@@ -1,0 +1,55 @@
+{
+  "name": "dsh-destinywind-mcp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MCP 管理界面：可视化配置/启停/刷新 MCP 服务器与工具勾选，新增服务器走弹窗并内置 GitHub 预设，进程环境变量以列表管理，密钥经凭据服务托管。Vendored from dsh-mcp 1.12.0 (MIT, Arvin.qi) and modified.",
+  "type": "module",
+  "main": "lib/index.js",
+  "icon": "./icon.svg",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "locale",
+    "static",
+    "cordis.patch.yml",
+    "icon.svg",
+    "LICENSE",
+    "NOTICE.md",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-api-remotes",
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-locale"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.4",
+    "@deepseek-ai/cordis-plugin-include": "*",
+    "@deepseek-ai/dsh-attachment": "*",
+    "@deepseek-ai/dsh-credentials": "*",
+    "@deepseek-ai/dsh-storage-domain": "*",
+    "@deepseek-ai/dsh-subprocess": "*",
+    "@deepseek-ai/dsh-timeout": "*",
+    "@deepseek-ai/dsh-tools": "*",
+    "@deepseek-ai/dsh-typert-protocol": "*",
+    "@deepseek-ai/schemastery": "*",
+    "@modelcontextprotocol/client": "^2.0.0",
+    "js-yaml": "^4.1.0",
+    "zod": "^4.2.0"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,374 @@
+/* MCP settings section: layout only.
+ *
+ * This plugin's stylesheets are injected VERBATIM into <style data-plugin>
+ * tags with an identity class map — there is no hashing and no true CSS-module
+ * isolation, so every rule here is application-global. Two consequences drive
+ * the whole sheet:
+ *   1. Never write a bare element selector (`button {}` once restyled the
+ *      composer's circular send button and had to be scoped back down).
+ *   2. Controls come from @deepseek-ai/dsh-client-ui-primitives, so this file
+ *      carries geometry and spacing only — no control chrome, no palettes.
+ * Class names are prefixed `mcp` because class names are also global across
+ * the plugin's five stylesheets and the later-injected file wins ties.
+ */
+
+.mcpSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 760px;
+  color: var(--dsw-alias-label-primary);
+}
+
+.mcpHeading {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Mode selector + its explanation read as one block, with the hint hanging
+   under the control it describes. */
+.mcpModeRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+.mcpModeHint {
+  margin: 0;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--dsw-alias-label-tertiary);
+}
+
+/* Settings card: the same fill + hairline the shell's own cards use. */
+.mcpCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 0.5px solid var(--dsw-alias-settings-card-stroke);
+  border-radius: var(--dsw-radius-xl);
+  padding: 14px 16px;
+  background: var(--dsw-alias-settings-card-fill);
+}
+
+.mcpCardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 28px;
+}
+
+/* The disclosure title is a Button primitive; pull its padding back so the
+   chevron aligns with the card's text column instead of the control grid. */
+.mcpModuleToggle {
+  margin: 0 -8px;
+  padding: 0 8px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.mcpModuleTitle {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.mcpModuleActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.mcpList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mcpServerCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 0.5px solid var(--dsw-alias-border-l2);
+  border-radius: var(--dsw-radius-md);
+  padding: 10px 12px;
+  background: var(--dsw-alias-bg-layer-3);
+}
+
+.mcpServerHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.mcpServerMain {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mcpServerTitle {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.mcpServerName {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  word-break: break-all;
+}
+
+.mcpServerMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--dsw-alias-label-tertiary);
+}
+
+/* Action cluster: one column so a long button label cannot squeeze the row's
+   text column, wrapping to two columns once the card is wide enough. */
+.mcpServerActions {
+  flex: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.mcpPath {
+  margin: 0;
+  font-size: 11px;
+  line-height: 16px;
+  color: var(--dsw-alias-label-tertiary);
+  word-break: break-all;
+}
+
+.mcpMuted {
+  margin: 0;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--dsw-alias-label-tertiary);
+}
+
+.mcpNote {
+  margin: 0;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--dsw-alias-label-tertiary);
+}
+
+.mcpWarn {
+  margin: 0;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--dsw-alias-state-warn-primary);
+}
+
+.mcpStatus {
+  margin: 0;
+  font-size: 13px;
+  color: var(--dsw-alias-label-tertiary);
+}
+
+.mcpFailure {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.mcpFailure p {
+  margin: 0;
+}
+
+.mcpFailure pre {
+  margin: 0;
+  max-width: 100%;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-size: 12px;
+}
+
+.mcpInlineFormItem {
+  list-style: none;
+}
+
+.mcpToolPanel {
+  border-top: 0.5px solid var(--dsw-alias-border-l2);
+  padding-top: 8px;
+}
+
+.mcpToolGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 4px 12px;
+}
+
+/* A tool row is a long `mcp__server__tool` name: keep the checkbox aligned to
+   the first line and let the name wrap instead of overflowing the column. */
+.mcpToolCheck {
+  min-width: 0;
+  align-items: flex-start;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.mcpToolCheck span {
+  word-break: break-all;
+}
+
+/* Create dialog: widen the primitive's 380px default, which is sized for a
+   confirm prompt, to hold the preset row plus the full server form. Height is
+   capped by `max-height: 100%` as the primitive documents, and the body below
+   does its own scrolling (mirrors PresetGuideDialog). */
+.mcpCreateDialog {
+  box-sizing: border-box;
+  width: min(720px, 100%);
+  height: min(640px, 100%);
+  max-height: 100%;
+  padding: 0;
+  gap: 0;
+}
+
+.mcpCreateLayout {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: 100%;
+}
+
+.mcpCreateHeader {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 20px 14px 12px 24px;
+}
+
+.mcpCreateTitle {
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+}
+
+/* Icon-only close: the md preset's 36px height and 14px side padding would
+   make this a 28x36 rectangle, so both are reset for a square hit target. */
+.mcpCreateClose {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  color: var(--dsw-alias-label-secondary);
+}
+
+.mcpCreateBody {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 24px 24px;
+}
+
+.mcpPresets {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mcpPresetTitle {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--dsw-alias-label-tertiary);
+}
+
+.mcpPresetRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  border: 0.5px solid var(--dsw-alias-border-l2);
+  border-radius: var(--dsw-radius-md);
+  padding: 10px 12px;
+  background: var(--dsw-alias-bg-layer-3);
+}
+
+.mcpPresetInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.mcpPresetName {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+}
+
+.mcpPresetDesc {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--dsw-alias-label-tertiary);
+}
+
+.mcpPresetActions {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mcpPresetDocs {
+  font-size: 12px;
+  color: var(--dsw-alias-label-tertiary);
+  text-decoration: none;
+}
+
+.mcpPresetDocs:hover {
+  color: var(--dsw-alias-label-primary);
+  text-decoration: underline;
+}
+
+/* Dismissed-preset row: the note is a text run but the control beside it is a
+   28px Button, so align on the flex line rather than a text baseline. */
+.mcpPresetRestore {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mcpHint {
+  margin: 0;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--dsw-alias-label-tertiary);
+}

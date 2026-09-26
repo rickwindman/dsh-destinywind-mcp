@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "MCP Manager",
+    "description": "Visually configure, enable/disable, and refresh MCP servers and tool switches; process environment variables are list-managed and secrets are kept by the credential service."
+  }
+}

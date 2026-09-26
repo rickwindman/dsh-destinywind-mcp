@@ -1,0 +1,215 @@
+/* Process env-var editor: layout only.
+ *
+ * This sheet is injected VERBATIM (identity class map, no hashing), so it is
+ * application-global: no bare element selectors, and every class is prefixed
+ * `genv` because class names are global across the plugin's five stylesheets
+ * and the later-injected file wins ties. All controls are UI primitives, so
+ * this file no longer carries any button chrome — the old `.actions button`
+ * and `.actions .primary` blocks are gone with the hand-rolled buttons.
+ *
+ * The panel is rendered inside the section's settings card, so it draws no
+ * border or fill of its own.
+ */
+
+.genvPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.genvHint {
+  margin: 0;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--dsw-alias-label-tertiary);
+}
+
+.genvMuted {
+  margin: 0;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--dsw-alias-label-tertiary);
+}
+
+.genvError {
+  margin: 0;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--dsw-alias-state-error-primary);
+  word-break: break-all;
+}
+
+.genvNotice {
+  margin: 0;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--dsw-alias-state-success-primary);
+}
+
+.genvList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Name column, value column, then the two icon actions. The value column is
+   the one that yields when the card is narrow, so a long name never pushes
+   the actions off the row. */
+.genvRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  border: 0.5px solid var(--dsw-alias-border-l2);
+  border-radius: var(--dsw-radius-sm);
+  padding: 6px 8px 6px 10px;
+  background: var(--dsw-alias-bg-layer-3);
+}
+
+.genvNameCell {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-width: 0;
+}
+
+.genvName {
+  font-family: var(--ds-font-family-code);
+  font-size: 12px;
+  line-height: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.genvValue {
+  font-family: var(--ds-font-family-code);
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--dsw-alias-label-tertiary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.genvRowActions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Icon-only primitive buttons: the size preset's horizontal padding would
+   stretch a single 16px glyph into a wide capsule. */
+.genvIconButton {
+  width: 28px;
+  padding: 0;
+  color: var(--dsw-alias-label-tertiary);
+}
+
+.genvIconButton:hover:not(:disabled) {
+  color: var(--dsw-alias-label-primary);
+}
+
+.genvRetryRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.genvActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Cap the dialog and let the body scroll, the way the primitives' own
+   RiskConfirmation does; without this a short viewport clips the fields
+   because Modal.module.css sets `overflow: hidden` on the dialog. */
+.genvDialog {
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.genvDialogScroll {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+@supports (height: 100dvh) {
+  .genvDialog {
+    max-height: calc(100dvh - 48px);
+  }
+}
+
+.genvDialogFields {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.genvDialogField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--dsw-alias-label-secondary);
+}
+
+.genvDialogField input {
+  width: 100%;
+  box-sizing: border-box;
+  height: 34px;
+  border: 0.5px solid var(--dsw-alias-border-l4);
+  border-radius: var(--dsw-radius-md);
+  padding: 0 12px;
+  outline: none;
+  background: var(--dsw-alias-bg-layer-3);
+  color: var(--dsw-alias-label-primary);
+  font: inherit;
+  font-size: 13px;
+}
+
+.genvDialogField input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Same ring recipe as the UI primitives (see the note in ServerForm). */
+.genvDialogField input:focus-visible {
+  border-color: var(--dsw-alias-state-business-primary);
+  outline: var(--dsw-focus-ring-width) solid var(--dsw-focus-ring-color, var(--dsw-alias-state-business-primary));
+  outline-offset: 2px;
+}
+
+.genvBulkText {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 140px;
+  border: 0.5px solid var(--dsw-alias-border-l4);
+  border-radius: var(--dsw-radius-md);
+  padding: 8px 10px;
+  outline: none;
+  background: var(--dsw-alias-bg-layer-3);
+  color: var(--dsw-alias-label-primary);
+  font: inherit;
+  font-size: 12px;
+  line-height: 18px;
+  font-family: var(--ds-font-family-code);
+  resize: vertical;
+}
+
+/* Same ring recipe as the UI primitives (see the note in ServerForm). */
+.genvBulkText:focus-visible {
+  border-color: var(--dsw-alias-state-business-primary);
+  outline: var(--dsw-focus-ring-width) solid var(--dsw-focus-ring-color, var(--dsw-alias-state-business-primary));
+  outline-offset: 2px;
+}

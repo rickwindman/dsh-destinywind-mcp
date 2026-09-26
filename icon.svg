@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="MCP 服务">
+  <defs>
+    <linearGradient id="mhTile" x1="6" y1="6" x2="58" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#EEF6FF"/>
+      <stop offset="1" stop-color="#E2F1EC"/>
+    </linearGradient>
+    <linearGradient id="mhWire" x1="14" y1="14" x2="50" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3E8FE0"/>
+      <stop offset="1" stop-color="#2FA98C"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="4" y="4" width="56" height="56" rx="15" fill="url(#mhTile)"/>
+
+  <!-- Hub: the harness side that owns every connection -->
+  <circle cx="32" cy="32" r="6.4" fill="#fff" fill-opacity="0.95"/>
+  <circle cx="32" cy="32" r="4.4" fill="url(#mhWire)"/>
+
+  <!-- Spokes: three connected MCP servers -->
+  <path d="M32 25.6V14.5M27.6 34.9 17.8 41.1M36.4 34.9l9.8 6.2"
+        stroke="url(#mhWire)" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+  <circle cx="32" cy="12.6" r="3.5" fill="#fff" fill-opacity="0.95" stroke="url(#mhWire)" stroke-width="2.6"/>
+  <circle cx="16.4" cy="42.4" r="3.5" fill="#fff" fill-opacity="0.95" stroke="url(#mhWire)" stroke-width="2.6"/>
+  <circle cx="47.6" cy="42.4" r="3.5" fill="#fff" fill-opacity="0.95" stroke="url(#mhWire)" stroke-width="2.6"/>
+</svg>

@@ -1,0 +1,68 @@
+/* Server-config JSON editor: layout + the code surface only.
+ *
+ * Injected VERBATIM (identity class map, no hashing), so no bare element
+ * selectors: the old `.jsonActions button` / `.jsonActions .primary` pair is gone now
+ * that the actions are the Button primitive.
+ */
+
+.jsonPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 0.5px solid var(--dsw-alias-border-l2);
+  border-radius: var(--dsw-radius-md);
+  padding: 12px;
+  background: var(--dsw-alias-bg-layer-1);
+}
+
+.jsonEditor {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 280px;
+  border: 0.5px solid var(--dsw-alias-border-l4);
+  border-radius: var(--dsw-radius-md);
+  padding: 8px 10px;
+  outline: none;
+  background: var(--dsw-alias-bg-layer-3);
+  color: var(--dsw-alias-label-primary);
+  font: inherit;
+  font-size: 12px;
+  line-height: 18px;
+  font-family: var(--ds-font-family-code);
+  resize: vertical;
+}
+
+/* Same ring recipe as the UI primitives (see the note in ServerForm). */
+.jsonEditor:focus-visible {
+  border-color: var(--dsw-alias-state-business-primary);
+  outline: var(--dsw-focus-ring-width) solid var(--dsw-focus-ring-color, var(--dsw-alias-state-business-primary));
+  outline-offset: 2px;
+}
+
+.jsonHint {
+  margin: 0;
+  color: var(--dsw-alias-label-tertiary);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.jsonError {
+  margin: 0;
+  color: var(--dsw-alias-state-error-primary);
+  font-size: 12px;
+  line-height: 18px;
+  word-break: break-all;
+}
+
+.jsonNotice {
+  margin: 0;
+  color: var(--dsw-alias-state-success-primary);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.jsonActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
